@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/img/logofino.jpg" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal_articulos.css">
     <title>Ecomerce</title>
 </head>
 <body>
@@ -24,10 +25,41 @@
     </header>
     
     <section>
-        <article></article>
-        <article></article>
-        <article></article>
-        <article></article>
+        <article data-name="Remera Oversize" data-price="$5000">
+            <img src="assets/img/producto1.jpg" alt="Producto 1">
+            <h3>Remera Oversize</h3>
+            <p>$5000</p>
+            <button>Agregar al carrito</button>
+        </article>
+        <article data-name="Buzo Negro" data-price="$12000">
+            <img src="assets/img/producto2.jpg" alt="Producto 2">
+            <h3>Buzo Negro</h3>
+            <p>$12000</p>
+            <button>Agregar al carrito</button>
+        </article>
+        <article data-name="Pantalón Cargo" data-price="$9000">
+            <img src="assets/img/producto3.jpg" alt="Producto 3">
+            <h3>Pantalón Cargo</h3>
+            <p>$9000</p>
+            <button>Agregar al carrito</button>
+        </article>
+        <article data-name="Campera de Jean" data-price="$15000">
+            <img src="assets/img/producto4.jpg" alt="Producto 4">
+            <h3>Campera de Jean</h3>
+            <p>$15000</p>
+            <button>Agregar al carrito</button>
+        </article>
     </section>
+
+    <!-- Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-price"></p>
+            <button>Agregar al carrito</button>
+        </div>
+    </div>
+
 </body>
 </html>
