@@ -2,7 +2,7 @@ document.getElementById("header").innerHTML = `
 <header id="header">
     <div class="logo">Elegant™</div>
     <nav>
-      <a href="inicio.html">SHOP</a>
+      <a href="index.html">SHOP</a>
       <a href="#">NEW IN</a>
       <a href="#">TSSY</a>
       <a href="#">TIENDAS</a>
