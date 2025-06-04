@@ -16,11 +16,13 @@
     <h2>Nuevo In - Elegant</h2>
     <section class="productos">
       <div class="producto">
-        <img src="assets/img/remeranegra.webp" alt="Remera Vice">
+        <img src="assets/img/remeranegra.webp" alt="Remera Vice" >
         <p class="name">REMERA OVERSIZE VICE</p>
         <p class="precio">$38.000,00</p>
         <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
         <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">Agregar 🛒</button>
+      <a href="#modal-producto1" class="btn-agregar">Ver detalles</a>
+
       </div>
       <div class="producto">
         <img src="assets/img/remerablanca.webp" alt="Remera Stick">
@@ -84,21 +86,16 @@
   <button id="vaciar-carrito">Vaciar carrito</button>
 </div>
 
-<!-- Modal-->
-<input type="checkbox" id="modal-toggle" class="modal-toggle" hidden>
-
-<div class="modal">
+<div id="modal-producto1" class="modal">
   <div class="modal-contenido">
-    <label for="modal-toggle" class="cerrar">&times;</label>
-    <h2>¡Producto agregado al carrito!</h2>
-    <p>Tu producto ha sido añadido exitosamente.</p>
+    <a href="#" class="cerrar">&times;</a>
+    <h2>Remera Oversize Vice</h2>
+    <p><strong>Precio:</strong> $38.000</p>
+    <p><strong>Colores:</strong> Negro, Blanco</p>
+    <p><strong>Talles disponibles:</strong> S, M, L, XL</p>
+    <p><strong>Descripción:</strong> Remera oversize de algodón premium.</p>
   </div>
 </div>
-
-<!-- Botón de ejemplo para abrir la modal -->
-<label for="modal-toggle" class="btn-modal-demo">Abrir modal</label>
-
-<label for="modal-toggle" class="btn-agregar">Agregar 🛒</label>
 
 
 </body>
