@@ -50,7 +50,7 @@ document.getElementById("header").innerHTML = `
     renderizarCarrito();
   });
 
-  // Asignar eventos a los botones de agregar
+  // asignar eventos a los botones de agregar
   document.querySelectorAll('.btn-agregar').forEach(btn => {
     btn.addEventListener('click', () => {
       const nombre = btn.dataset.nombre;
@@ -82,3 +82,30 @@ document.getElementById('vaciar-carrito').addEventListener('click', () => {
   carrito.length = 0;
   renderizarCarrito(); 
 });
+
+//funciones para disminuir, aumentar y eliminar productos//
+
+function aumentarCantidad(nombre) {
+  const producto = carrito.find(item => item.nombre === nombre)
+  if (producto){
+    producto.cantidad++;
+    actualizarCarrito();
+  } 
+}
+
+function disminuirCantidad(nombre){
+  const producto = carrito.find(item => item.nombre === nombre)
+  if(producto && producto.cantidad > 1){
+    producto.cantidad--;
+  } else{
+    eliminarProducto(nombre);
+  }
+  actualizarCarrito();
+}
+
+function eliminarProducto(nombre){
+  carrito = carrito.filter (item => item.nombre !== nombre);
+  actualizarCarrito();
+}
+
+total += producto.precio * producto.cantidad;
