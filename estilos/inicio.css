@@ -127,3 +127,10 @@ main h2 {
 .oculto {
   display: none;
 }
+
+footer{
+  background-color: var(--color-secundario);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
