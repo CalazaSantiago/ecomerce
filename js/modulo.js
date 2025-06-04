@@ -82,3 +82,9 @@ document.getElementById('vaciar-carrito').addEventListener('click', () => {
   carrito.length = 0;
   renderizarCarrito(); 
 });
+
+document.getElementById("footer").innerHTML = ` 
+<footer id="footer">
+    <div class="logo">Elegant™</div>
+    <h2>Copyright Elegant™ - 30718039947 - 2025. Todos los derechos reservados.</h2>
+  </footer> `;
