@@ -84,17 +84,22 @@
   <button id="vaciar-carrito">Vaciar carrito</button>
 </div>
 
-    <!-- Modal -->
-    <div class="modal" id="product-modal">
-        <div class="modal-content">
-            <span class="close" id="close-modal">&times;</span>
-            <h2 id="modal-title"></h2>
-            <p id="modal-price"></p>
-            <button>Agregar al carrito</button>
-        </div>
-    </div>
+<!-- Modal-->
+<input type="checkbox" id="modal-toggle" class="modal-toggle" hidden>
 
-    
+<div class="modal">
+  <div class="modal-contenido">
+    <label for="modal-toggle" class="cerrar">&times;</label>
+    <h2>¡Producto agregado al carrito!</h2>
+    <p>Tu producto ha sido añadido exitosamente.</p>
+  </div>
+</div>
+
+<!-- Botón de ejemplo para abrir la modal -->
+<label for="modal-toggle" class="btn-modal-demo">Abrir modal</label>
+
+<label for="modal-toggle" class="btn-agregar">Agregar 🛒</label>
+
 
 </body>
 </html>
