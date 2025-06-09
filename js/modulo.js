@@ -2,11 +2,11 @@ document.getElementById("header").innerHTML = `
 <header id="header">
     <div class="logo">Elegant™</div>
     <nav>
-      <a href="inicio.html">SHOP</a>
+      <a href="index.html">SHOP</a>
       <a href="#">NEW IN</a>
       <a href="#">TSSY</a>
       <a href="#">TIENDAS</a>
-      <a href="#">AYUDA</a>
+      <a href="admin.html">ADMIN</a>
       <a href="login.html">ACCEDER</a>
     </nav>
     <div id="icono-carrito" class="icons">
@@ -50,7 +50,7 @@ document.getElementById("header").innerHTML = `
     renderizarCarrito();
   });
 
-  // Asignar eventos a los botones de agregar
+  // asignar eventos a los botones de agregar
   document.querySelectorAll('.btn-agregar').forEach(btn => {
     btn.addEventListener('click', () => {
       const nombre = btn.dataset.nombre;
@@ -80,5 +80,11 @@ function renderizarCarrito() {
 
 document.getElementById('vaciar-carrito').addEventListener('click', () => {
   carrito.length = 0;
-  renderizarCarrito(); // esto ya actualiza el contador a 0
+  renderizarCarrito(); 
 });
+
+document.getElementById("footer").innerHTML = ` 
+<footer id="footer">
+    <div class="logo">Elegant™</div>
+    <h2>Copyright Elegant™ - 30718039947 - 2025. Todos los derechos reservados.</h2>
+  </footer> `;
