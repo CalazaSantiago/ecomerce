@@ -83,37 +83,8 @@ document.getElementById('vaciar-carrito').addEventListener('click', () => {
   renderizarCarrito(); 
 });
 
-<<<<<<< HEAD
 document.getElementById("footer").innerHTML = ` 
 <footer id="footer">
     <div class="logo">Elegant™</div>
     <h2>Copyright Elegant™ - 30718039947 - 2025. Todos los derechos reservados.</h2>
   </footer> `;
-=======
-//funciones para disminuir, aumentar y eliminar productos//
-
-function aumentarCantidad(nombre) {
-  const producto = carrito.find(item => item.nombre === nombre)
-  if (producto){
-    producto.cantidad++;
-    actualizarCarrito();
-  } 
-}
-
-function disminuirCantidad(nombre){
-  const producto = carrito.find(item => item.nombre === nombre)
-  if(producto && producto.cantidad > 1){
-    producto.cantidad--;
-  } else{
-    eliminarProducto(nombre);
-  }
-  actualizarCarrito();
-}
-
-function eliminarProducto(nombre){
-  carrito = carrito.filter (item => item.nombre !== nombre);
-  actualizarCarrito();
-}
-
-total += producto.precio * producto.cantidad;
->>>>>>> marcos
