@@ -68,22 +68,7 @@ main h2 {
   border: 1rem solid var(--color-boton);
   border-radius: 0.5rem;
   cursor: pointer;
-<<<<<<< HEAD
 }
-=======
-  text-decoration: none;
-}
-.btn-añadir{
-  padding: 0.1rem 0.1rem;
-  background: var(--color-boton);
-  font-size: 1em;
-  color: #181818;
-  border: 1rem solid var(--color-boton);
-  border-radius: 0.5rem;
-  cursor: pointer;
-}
-
->>>>>>> origin
 
 .productos {
   display: flex;
@@ -138,23 +123,7 @@ main h2 {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   z-index: 999;
 }
-<<<<<<< HEAD
 
 .oculto {
   display: none;
-=======
-ul, li{
-  list-style: none;
-}
-
-.oculto {
-  display: none;
-}
-
-footer{
-  background-color: var(--color-secundario);
-  padding: 2rem;
-  text-align: center;
-  position: relative;
->>>>>>> origin
 }

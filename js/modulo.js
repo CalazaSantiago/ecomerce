@@ -5,10 +5,6 @@ document.getElementById("header").innerHTML = `
       <a href="index.html">SHOP</a>
       <a href="#">NEW IN</a>
       <a href="#">TSSY</a>
-<<<<<<< HEAD
-=======
-      <a href="#">TIENDAS</a>
->>>>>>> origin
       <a href="admin.html">ADMIN</a>
       <a href="login.html">ACCEDER</a>
     </nav>
@@ -28,6 +24,23 @@ document.getElementById("header").innerHTML = `
   iconoCarrito.addEventListener('click', () => {
     carritoPanel.classList.toggle('oculto');
   });
+
+  function actualizarCarrito() {
+    const listaCarrito = document.getElementById('lista-carrito');
+    const totalSpan = document.getElementById('total');
+    
+    listaCarrito.innerHTML = '';
+    let total = 0;
+    
+    carrito.forEach(producto => {
+      const li= document.createElement('li')
+      li.innerHTML = '${producto.nombre} - $$ {producto.precio} x ${producto.cantidad} <button>+</button> <button>-</button> <button>x</button>';
+      listaCarrito.appendChild(li);
+      total += producto.precio * producto.cantidad;
+    });
+    totalSpan.textContent = total.toLocaleString();
+  }
+
 
   function agregarAlCarrito(nombre, precio) {
     carrito.push({ nombre, precio });
