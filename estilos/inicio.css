@@ -68,8 +68,8 @@ main h2 {
   border: 1rem solid var(--color-boton);
   border-radius: 0.5rem;
   cursor: pointer;
+  text-decoration: none;
 }
-
 .btn-añadir{
   padding: 0.1rem 0.1rem;
   background: var(--color-boton);
