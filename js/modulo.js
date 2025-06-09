@@ -6,7 +6,7 @@ document.getElementById("header").innerHTML = `
       <a href="#">NEW IN</a>
       <a href="#">TSSY</a>
       <a href="#">TIENDAS</a>
-      <a href="#">AYUDA</a>
+      <a href="admin.html">ADMIN</a>
       <a href="login.html">ACCEDER</a>
     </nav>
     <div id="icono-carrito" class="icons">
