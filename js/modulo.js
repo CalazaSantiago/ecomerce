@@ -5,6 +5,10 @@ document.getElementById("header").innerHTML = `
       <a href="index.html">SHOP</a>
       <a href="#">NEW IN</a>
       <a href="#">TSSY</a>
+<<<<<<< HEAD
+=======
+      <a href="#">TIENDAS</a>
+>>>>>>> origin
       <a href="admin.html">ADMIN</a>
       <a href="login.html">ACCEDER</a>
     </nav>
