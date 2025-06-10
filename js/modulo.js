@@ -1,106 +1,105 @@
+// HEADER
 document.getElementById("header").innerHTML = ` 
 <header id="header">
-    <div class="logo">Elegant™</div>
-    <nav>
-      <a href="index.html">SHOP</a>
-      <a href="#">NEW IN</a>
-      <a href="#">TSSY</a>
-      <a href="admin.html">ADMIN</a>
-      <a href="login.html">ACCEDER</a>
-    </nav>
-    <div id="icono-carrito" class="icons">
-      🛒<span id="contador-carrito">0</span>
-    </div>
-  </header> `;
+  <div class="logo">Elegant™</div>
+  <nav>
+    <a href="index.html">SHOP</a>
+    <a href="#">NEW IN</a>
+    <a href="#">TSSY</a>
+    <a href="admin.html">ADMIN</a>
+    <a href="login.html">ACCEDER</a>
+  </nav>
+  <div id="icono-carrito" class="icons">
+    🛒<span id="contador-carrito">0</span>
+  </div>
+</header> `;
 
-  //carrito//
 
-  const carrito = [];
-  const carritoLista = document.getElementById('carrito-lista');
-  const carritoTotal = document.getElementById('carrito-total');
-  const iconoCarrito = document.getElementById('icono-carrito');
-  const carritoPanel = document.getElementById('carrito');
+// Carrito
+let carrito = [];
 
-  iconoCarrito.addEventListener('click', () => {
-    carritoPanel.classList.toggle('oculto');
-  });
-
-  function actualizarCarrito() {
-    const listaCarrito = document.getElementById('lista-carrito');
-    const totalSpan = document.getElementById('total');
-    
-    listaCarrito.innerHTML = '';
-    let total = 0;
-    
-    carrito.forEach(producto => {
-      const li= document.createElement('li')
-      li.innerHTML = '${producto.nombre} - $$ {producto.precio} x ${producto.cantidad} <button>+</button> <button>-</button> <button>x</button>';
-      listaCarrito.appendChild(li);
-      total += producto.precio * producto.cantidad;
-    });
-    totalSpan.textContent = total.toLocaleString();
+// Agrega un producto al carrito
+function agregarAlCarrito(nombre, precio) {
+  const productoExistente = carrito.find(producto => producto.nombre === nombre);
+  if (productoExistente) {
+    productoExistente.cantidad++;
+  } else {
+    carrito.push({ nombre, precio, cantidad: 1 });
   }
-
-
-  function agregarAlCarrito(nombre, precio) {
-    carrito.push({ nombre, precio });
-    renderizarCarrito();
-  }
-
-  function renderizarCarrito() {
-    carritoLista.innerHTML = '';
-    let total = 0;
-
-    carrito.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.nombre} - $${item.precio}`;
-      carritoLista.appendChild(li);
-      total += parseFloat(item.precio.replace('.', '').replace(',', '.'));
-    });
-
-    carritoTotal.textContent = total.toLocaleString('es-AR', { minimumFractionDigits: 2 });
-  }
-
-  document.getElementById('vaciar-carrito').addEventListener('click', () => {
-    carrito.length = 0;
-    renderizarCarrito();
-  });
-
-  // asignar eventos a los botones de agregar
-  document.querySelectorAll('.btn-agregar').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const nombre = btn.dataset.nombre;
-      const precio = btn.dataset.precio;
-      agregarAlCarrito(nombre, precio);
-    });
-  });
-
-  //cantidad de veces que se agrega o vacia el carrito//
-
-  const contadorCarrito = document.getElementById('contador-carrito');
-
-function renderizarCarrito() {
-  carritoLista.innerHTML = '';
-  let total = 0;
-
-  carrito.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = `${item.nombre} - $${item.precio}`;
-    carritoLista.appendChild(li);
-    total += parseFloat(item.precio.replace('.', '').replace(',', '.'));
-  });
-
-  carritoTotal.textContent = total.toLocaleString('es-AR', { minimumFractionDigits: 2 });
-  contadorCarrito.textContent = carrito.length; // 🔥 Actualiza el número al lado del 🛒
+  actualizarCarrito();
 }
 
-document.getElementById('vaciar-carrito').addEventListener('click', () => {
-  carrito.length = 0;
-  renderizarCarrito(); 
+// Elimina un producto completamente del carrito
+function eliminarProducto(nombre) {
+  carrito = carrito.filter(producto => producto.nombre !== nombre);
+  actualizarCarrito();
+}
+
+// Cambia la cantidad de un producto
+function cambiarCantidad(nombre, cambio) {
+  const producto = carrito.find(p => p.nombre === nombre);
+  if (!producto) return;
+
+  producto.cantidad += cambio;
+  if (producto.cantidad <= 0) {
+    eliminarProducto(nombre);
+  } else {
+    actualizarCarrito();
+  }
+}
+
+// Actualiza la interfaz del carrito
+function actualizarCarrito() {
+  const carritoLista = document.getElementById("carrito-lista");
+  const carritoTotal = document.getElementById("carrito-total");
+  const contadorCarrito = document.getElementById("contador-carrito");
+
+  carritoLista.innerHTML = "";
+  let total = 0;
+  let cantidadTotal = 0;
+
+  carrito.forEach(producto => {
+    const item = document.createElement("li");
+    item.innerHTML = `
+      ${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: $${producto.precio * producto.cantidad}
+      <button class="btn-menos" data-nombre="${producto.nombre}">-</button>
+      <button class="btn-mas" data-nombre="${producto.nombre}">+</button>
+      <button class="btn-eliminar" data-nombre="${producto.nombre}">x</button>
+    `;
+    carritoLista.appendChild(item);
+    total += producto.precio * producto.cantidad;
+    cantidadTotal += producto.cantidad;
+  });
+
+  carritoTotal.textContent = total.toLocaleString("es-AR");
+  contadorCarrito.textContent = cantidadTotal;
+
+  // Escuchamos los botones dentro del carrito
+  document.querySelectorAll(".btn-menos").forEach(boton =>
+    boton.addEventListener("click", () => cambiarCantidad(boton.dataset.nombre, -1))
+  );
+  document.querySelectorAll(".btn-mas").forEach(boton =>
+    boton.addEventListener("click", () => cambiarCantidad(boton.dataset.nombre, 1))
+  );
+  document.querySelectorAll(".btn-eliminar").forEach(boton =>
+    boton.addEventListener("click", () => eliminarProducto(boton.dataset.nombre))
+  );
+}
+
+// Evento para todos los botones de agregar al carrito
+document.querySelectorAll(".btn-agregar").forEach(boton => {
+  boton.addEventListener("click", () => {
+    const nombre = boton.dataset.nombre;
+    let precioTexto = boton.dataset.precio;
+    precioTexto = precioTexto.replace(/\./g, '').replace(',', '.'); // "38.000,00" → "38000.00"
+    const precio = parseFloat(precioTexto);
+    agregarAlCarrito(nombre, precio);
+  });
 });
 
+// FOOTER
 document.getElementById("footer").innerHTML = ` 
 <footer id="footer">
-    <div class="logo">Elegant™</div>
-    <h2>Copyright Elegant™ - 30718039947 - 2025. Todos los derechos reservados.</h2>
-  </footer> `;
+  <div class="logo">Elegant™</div>
+  <h2>Copyright Elegant™ - 30718039947 - 2025. Todos los derechos reservados.</h2>
+</footer> `;
