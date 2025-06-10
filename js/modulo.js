@@ -9,97 +9,91 @@ document.getElementById("header").innerHTML = `
     <a href="admin.html">ADMIN</a>
     <a href="login.html">ACCEDER</a>
   </nav>
-  <div id="icono-carrito" class="icons">
-    🛒<span id="contador-carrito">0</span>
-  </div>
+        <div class="carrito-container">
+    <span class="carrito-icono" onclick="toggleCarrito()">🛒</span>
+    <div class="carrito" style="display: none;">
+        <div class="productos-carrito">
+            <!-- Los productos se insertarán aquí dinámicamente -->
+        </div>
+        <div class="total">Total: $0</div>
+        <a href="#" class="finalizar">Finalizar Compra</a>
+    </div>
+</div>
 </header> `;
 
-
-// Carrito
 let carrito = [];
 
-// Agrega un producto al carrito
+let producto 
+
+function toggleCarrito() {
+    const carritoElemento = document.querySelector('.carrito');
+    carritoElemento.style.display = carritoElemento.style.display === 'none' ? 'block' : 'none';
+}
+
+
 function agregarAlCarrito(nombre, precio) {
-  const productoExistente = carrito.find(producto => producto.nombre === nombre);
+  const productoExistente = carrito.find(p => p.nombre === nombre);
+
   if (productoExistente) {
     productoExistente.cantidad++;
   } else {
     carrito.push({ nombre, precio, cantidad: 1 });
   }
-  actualizarCarrito();
+
+   
+
+
+  renderizarCarrito();
 }
 
-// Elimina un producto completamente del carrito
+
+function cambiarCantidad(nombre, delta) {
+    const producto = carrito.find(p => p.nombre === nombre);
+    if (!producto) return;
+
+    producto.cantidad += delta;
+    if (producto.cantidad < 1) {
+        eliminarProducto(nombre);
+    } else {
+        renderizarCarrito();
+    }
+}
+
 function eliminarProducto(nombre) {
-  carrito = carrito.filter(producto => producto.nombre !== nombre);
-  actualizarCarrito();
+    carrito = carrito.filter(p => p.nombre !== nombre);
+    renderizarCarrito();
 }
 
-// Cambia la cantidad de un producto
-function cambiarCantidad(nombre, cambio) {
-  const producto = carrito.find(p => p.nombre === nombre);
-  if (!producto) return;
+function renderizarCarrito() {
+    const contenedor = document.querySelector('.productos-carrito');
+    contenedor.innerHTML = '';
 
-  producto.cantidad += cambio;
-  if (producto.cantidad <= 0) {
-    eliminarProducto(nombre);
-  } else {
-    actualizarCarrito();
-  }
+    let total = 0;
+
+    carrito.forEach(producto => {
+        const item = document.createElement('div');
+        item.className = 'producto';
+        item.innerHTML = `
+            <p>${producto.nombre}</p>
+            <p>$${producto.precio.toLocaleString()}</p>
+            <div>
+                <button class="btn-product" onclick="cambiarCantidad('${producto.nombre}', -1)">-</button>
+                <input class="input-prod" type="number" value="${producto.cantidad}" readonly style="width: 1.5rem; text-align: center;">
+                <button class="btn-product" onclick="cambiarCantidad('${producto.nombre}', 1)">+</button>
+                <button class="btn-product" onclick="eliminarProducto('${producto.nombre}')">🗑️</button>
+            </div>
+        `;
+        contenedor.appendChild(item);
+        total += producto.precio * producto.cantidad;
+    });
+
+    document.querySelector('.total').textContent = `Total: $${total.toLocaleString()}`;
 }
 
-// Actualiza la interfaz del carrito
-function actualizarCarrito() {
-  const carritoLista = document.getElementById("carrito-lista");
-  const carritoTotal = document.getElementById("carrito-total");
-  const contadorCarrito = document.getElementById("contador-carrito");
-
-  carritoLista.innerHTML = "";
-  let total = 0;
-  let cantidadTotal = 0;
-
-  carrito.forEach(producto => {
-    const item = document.createElement("li");
-    item.innerHTML = `
-      ${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: $${producto.precio * producto.cantidad}
-      <button class="btn-menos" data-nombre="${producto.nombre}">-</button>
-      <button class="btn-mas" data-nombre="${producto.nombre}">+</button>
-      <button class="btn-eliminar" data-nombre="${producto.nombre}">x</button>
-    `;
-    carritoLista.appendChild(item);
-    total += producto.precio * producto.cantidad;
-    cantidadTotal += producto.cantidad;
-  });
-
-  carritoTotal.textContent = total.toLocaleString("es-AR");
-  contadorCarrito.textContent = cantidadTotal;
-
-  // Escuchamos los botones dentro del carrito
-  document.querySelectorAll(".btn-menos").forEach(boton =>
-    boton.addEventListener("click", () => cambiarCantidad(boton.dataset.nombre, -1))
-  );
-  document.querySelectorAll(".btn-mas").forEach(boton =>
-    boton.addEventListener("click", () => cambiarCantidad(boton.dataset.nombre, 1))
-  );
-  document.querySelectorAll(".btn-eliminar").forEach(boton =>
-    boton.addEventListener("click", () => eliminarProducto(boton.dataset.nombre))
-  );
-}
-
-// Evento para todos los botones de agregar al carrito
-document.querySelectorAll(".btn-agregar").forEach(boton => {
-  boton.addEventListener("click", () => {
-    const nombre = boton.dataset.nombre;
-    let precioTexto = boton.dataset.precio;
-    precioTexto = precioTexto.replace(/\./g, '').replace(',', '.'); // "38.000,00" → "38000.00"
-    const precio = parseFloat(precioTexto);
-    agregarAlCarrito(nombre, precio);
-  });
-});
 
 // FOOTER
 document.getElementById("footer").innerHTML = ` 
 <footer id="footer">
-  <div class="logo">Elegant™</div>
-  <h2>Copyright Elegant™ - 30718039947 - 2025. Todos los derechos reservados.</h2>
+  <p>Copyright Elegant™ - 30718039947 - 2025. Todos los derechos reservados.</p>
 </footer> `;
+ 
