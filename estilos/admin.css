@@ -70,6 +70,18 @@ main h2 {
   cursor: pointer;
 }
 
+
+.btn-editar{
+  padding: 0.1rem 0.1rem;
+  background: var(--color-boton);
+  font-size: 1em;
+  color: #181818;
+  border: 1rem solid var(--color-boton);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+
 .productos {
   display: flex;
   flex-wrap: wrap;

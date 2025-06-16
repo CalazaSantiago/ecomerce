@@ -15,6 +15,11 @@
   <main>
     <h2>Nuevo In - Elegant</h2>
      <a href="#modal-producto1" class="btn-agregar">Añadir</a>
+
+    <br>
+    <br>
+    <br>
+
     <section class="productos">
       <div class="producto">
         <img src="assets/img/remeranegra.webp" alt="Remera Vice" >
@@ -98,6 +103,39 @@
 
 <!-- Modal-->
 <input type="checkbox" id="modal-toggle" class="modal-toggle" hidden>
+
+<!-- Modal de edición -->
+<div id="modal-destino" class="modal-form">
+  <div class="modal-contenido">
+    <span class="cerrar" id="cerrar-modal">&times;</span>
+    <h3 id="modal-titulo">Editar destino</h3>
+    <form id="form-destino">
+      <input type="hidden" id="destino-id" />
+      
+      <label for="nombre">Nombre del destino</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="localidad">Localidad</label>
+      <input type="text" id="localidad" name="localidad" required>
+
+      <label for="imagen">Imagen de referencia (URL)</label>
+      <input type="url" id="imagen" name="imagen" required>
+
+      <label for="precio">Precio</label>
+      <input type="number" id="precio" name="precio" required>
+
+      <label for="categoria">Categoría</label>
+      <input type="text" id="categoria" name="categoria" required>
+
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+
+      <button type="submit" class="btn-agregar">Guardar cambios</button>
+    </form>
+  </div>
+</div>
+
+
 
 </body>
 </html>
