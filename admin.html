@@ -6,7 +6,8 @@
   <title>Elegant</title>
   <link rel="shortcut icon" href="assets/img/logofino.jpg" type="image/x-icon">
   <link rel="stylesheet" href="estilos/admin.css"/>
-  <script src="js/modulo.js" defer></script> 
+   <link rel="stylesheet" href="estilos/estilomodulo.css">
+   <link rel="stylesheet" href="estilos/footer.css">
 </head>
 <body>
   
@@ -14,7 +15,7 @@
     
   <main>
     <h2>Nuevo In - Elegant</h2>
-     <a href="#modal-producto1" class="btn-agregar">Añadir</a>
+<button type="button" class="btn-agregar" id="abrir-modal">Añadir</button>
 
     <br>
     <br>
@@ -87,31 +88,22 @@
          <a href="#modal-producto1" class="btn-agregar">eliminar</a>
 
       </div>
-       <div class="producto">
-        <img src="assets/img/destinos/nueva-york.jpg" alt="Nueva York Experience">
-        <p class="name">Nueva York Experience</p>
-        <p class="precio">$1.500.000</p>
-        <p class="descuento">$1.350.000 <span>con pago anticipado</span></p>
-        <button class="btn-editar" data-id="1">Editar</button>
-      </div>
-
       </div>
     </section>
   </main>
 
 <div id="footer"></div>
 
-<!-- Modal-->
-<input type="checkbox" id="modal-toggle" class="modal-toggle" hidden>
 
+<!-- formulario modal -->
+<div id="modal-destino" class="modal">
 
-<!-- Modal de edición -->
-<div id="modal-destino" class="modal-form">
   <div class="modal-contenido">
+
     <span class="cerrar" id="cerrar-modal">&times;</span>
-    <h3 id="modal-titulo">Editar destino</h3>
+    <h3 id="modal-titulo">Agregar un Producto</h3>
+    
     <form id="form-destino">
-      <input type="hidden" id="destino-id" />
       
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" required>
@@ -130,6 +122,30 @@
   </div>
 </div>
 
+<!-- Modal de edición -->
+<div id="modal-editar" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" id="cerrar-modal-editar">&times;</span>
+    <h3>Editar Producto</h3>
+    <form id="form-editar">
+      <label for="editar-nombre">Nombre</label>
+      <input type="text" id="editar-nombre" name="nombre" required>
+
+      <label for="editar-imagen">Imagen de referencia (URL)</label>
+      <input type="url" id="editar-imagen" name="imagen" required>
+
+      <label for="editar-precio">Precio</label>
+      <input type="number" id="editar-precio" name="precio" required>
+
+      <label for="editar-descripcion">Descripción</label>
+      <textarea id="editar-descripcion" name="descripcion" rows="4" required></textarea>
+
+      <button type="submit" class="btn-agregar">Guardar cambios</button>
+    </form>
+  </div>
+</div>
 
 </body>
+<script src="js/admin.js"></script>
+<script src="js/modulo.js"></script>
 </html>
