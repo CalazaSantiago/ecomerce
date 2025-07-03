@@ -17,6 +17,7 @@ document.getElementById("header").innerHTML = `
         </div>
         <div class="total">Total: $0</div>
         <a href="#" class="finalizar">Finalizar Compra</a>
+        <button class="cerrar-carrito" onclick="cerrarCarrito()">✖</button>
     </div>
 </div>
 </header> `;
@@ -88,6 +89,10 @@ function renderizarCarrito() {
     });
 
     document.querySelector('.total').textContent = `Total: $${total.toLocaleString()}`;
+
+}
+function cerrarCarrito() {
+ document.querySelector('.carrito').style.display = 'none';
 }
 
 

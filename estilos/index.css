@@ -149,6 +149,18 @@ main h2 {
     margin-left: 5px;
 }
 
+.cerrar-carrito {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #333;
+  z-index: 1001;
+}
+
 .btn-product{
   background: var(--color-boton);
   font-size: 1em;
@@ -160,6 +172,28 @@ main h2 {
 .input-prod{
   background-color: var(--color-boton);
   height: 2rem;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+  .productos {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .carrito {
+    position: static;
+    width: 90vw;
+    margin: 1rem auto;
+    font-size: 12px;
+  }
+  main {
+    padding: 1rem;
+  }
 }
 
 
