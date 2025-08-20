@@ -8,6 +8,7 @@ document.getElementById("header").innerHTML = `
     <a href="#">TSSY</a>
     <a href="admin.html">ADMIN</a>
     <a href="login.html">ACCEDER</a>
+    <a href="favorito.html">❤</a>
   </nav>
   <div id="icono-carrito" class="icons">
     🛒<span id="contador-carrito">0</span>
