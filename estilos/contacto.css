@@ -54,8 +54,148 @@ main {
   text-align: center;
 }
 
+main h2 {
+  font-size: 2em;
+  margin-bottom: 1rem;
+  color: #4a2f13;
+}
 
+  .btn-agregar{
+  padding: 0.1rem 0.1rem;
+  background: var(--color-boton);
+  font-size: 1em;
+  color: #181818;
+  border: 1rem solid var(--color-boton);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
 
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.producto {
+  border: 1px solid #eee;
+  padding: 1rem;
+  transition: transform 0.3s;
+}
+
+.producto:hover {
+  transform: scale(1.03);
+}
+
+.producto img {
+  width: 100%;
+  max-height: 25vh;
+  object-fit: contain;
+}
+
+.producto .name {
+  font-weight: bold;
+  margin: 1rem 0 5px;
+}
+
+.producto .precio {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.producto .descuento {
+  font-size: 1em;
+  color: #444;
+}
+
+.producto .descuento span {
+  color: var(--color-descuento);
+}
+
+ /* carrito estilos  */
+.carrito {
+
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    width: 15vw; /* Ajusta este valor si querés más/menos ancho */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 1.4rem;
+    z-index: 999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-size: 14px;
+}
+
+.carrito .producto {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.carrito .cantidad {
+    display: flex;
+    align-items: center;
+}
+
+.carrito .cantidad input {
+    width: 3vw;
+    text-align: center;
+    margin: 0 5px;
+}
+
+.carrito .eliminar {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.cerrar-carrito {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #333;
+  z-index: 1001;
+}
+
+.btn-product{
+  background: var(--color-boton);
+  font-size: 1em;
+  color: #181818;
+  border: 0.6rem solid var(--color-boton);
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+.input-prod{
+  background-color: var(--color-boton);
+  height: 2rem;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+  .productos {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .carrito {
+    position: static;
+    width: 90vw;
+    margin: 1rem auto;
+    font-size: 12px;
+  }
+  main {
+    padding: 1rem;
+  }
+}
+ 
 body {
     font-family: Arial, sans-serif;
     background: #f5f5f5;
@@ -110,6 +250,8 @@ form button {
 form button:hover {
     background-color: #d4ac0d;
 }
+
+
 
 .mapa-container {
   display: flex;
