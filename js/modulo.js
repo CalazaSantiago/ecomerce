@@ -5,7 +5,7 @@ document.getElementById("header").innerHTML = `
   <nav>
     <a href="index.html">SHOP</a>
     <a href="#">NEW IN</a>
-    <a href="#">TSSY</a>
+    <a href="contacto.html">CONTACTO</a>
     <a href="admin.html">ADMIN</a>
     <a href="login.html">ACCEDER</a>
   </nav>
