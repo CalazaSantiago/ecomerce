@@ -1,22 +1,34 @@
-x  <!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Elegant</title>
-  <link rel="shortcut icon" href="assets/img/logofino.jpg" type="image/x-icon">
-  <link rel="stylesheet" href="estilos/index.css"/>
-  <link rel="stylesheet" href="estilos/footer.css">
-  <link rel="stylesheet" href="estilos/contacto.css">
-  <script src="js/modulo.js" defer></script> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos/login.css">
+    <link rel="stylesheet" href="estilos/index.css">
+    <script src="js/modulo.js" defer></script>
+    <title>Elegant</title>
 </head>
 <body>
-  
-    <div id="header">
-    </div>
+    <div id="header"></div>
 
-     
-
-    <div id="footer">
+    <form action="">
+    <div class="login-container">
+    <h1>Iniciar sesión</h1>
+    
+    <input type="email" id="email" placeholder="Email">
+    
+    <div class="password-container">
+      <input type="password" id="password" placeholder="Contraseña">
     </div>
+    
+    <button class="login-button"><a href="index.html">Iniciar Sesion</a></button>
+    
+    <p class="registro">¿No tenés cuenta aún? <a href="register.html">Crear cuenta</a></p>
+  </div>
+    </form>
+
 </body>
+<script src="js/carritoModulo.js"></script>
+<script src="js/favorito.js"></script>
+<script src="js/favoritoModulo.js"></script>
+</html>
