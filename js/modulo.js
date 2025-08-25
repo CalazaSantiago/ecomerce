@@ -9,6 +9,14 @@ document.getElementById("header").innerHTML = `
     <a href="admin.html">ADMIN</a>
     <a href="login.html">ACCEDER</a>
   </nav>
+  <div class="favoritos-container">
+  <span class="favoritos-icono" onclick="toggleFavoritos()">❤️ </span>
+  <div class="favoritos" style="display: none;">
+    <div class="productos-favoritos">
+</div>
+</div>
+</div>
+
         <div class="carrito-container">
     <span class="carrito-icono" onclick="toggleCarrito()">🛒</span>
     <div class="carrito" style="display: none;">
