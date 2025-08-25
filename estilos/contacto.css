@@ -1,3 +1,61 @@
+:root {
+  --color-fondo: #ffffff;
+  --color-texto: #000000;
+  --color-precio: #333333;
+  --color-descuento: #666666;
+  --color-primario: #0033ff;
+  --color-secundario: #e0e0e0;
+  --color-carrito-fondo: #f9f9f9;
+  --color-carrito-borde: #ddd;
+  --fuente-principal: 'Arial', sans-serif;
+  --color-boton: #fec195;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  border-bottom: 1px solid var(--color-secundario);
+}
+
+.logo {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+nav a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+.icons span {
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+
+main {
+  padding: 4rem;
+  text-align: center;
+}
+
+
+
 body {
     font-family: Arial, sans-serif;
     background: #f5f5f5;
@@ -51,4 +109,10 @@ form button {
 
 form button:hover {
     background-color: #d4ac0d;
+}
+
+.mapa-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
 }
