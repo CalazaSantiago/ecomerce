@@ -24,10 +24,13 @@ body {
   color: var(--color-texto);
 }
 
-header {
+
+  header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+
   padding: 2rem 4rem;
   border-bottom: 1px solid var(--color-secundario);
 }
@@ -200,6 +203,10 @@ main h2 {
   main {
     padding: 1rem;
   }
+  .favoritos-container {
+    top: 70px;   /* lo bajamos un poco para no tapar el menú */
+    right: 20px;
+  }
 }
 
 /* Botón de agregar a favoritos */
@@ -245,7 +252,7 @@ main h2 {
 .favoritos-container {
   position: fixed;
   top: 20px;
-  right: 80px; /* ajustá según tu carrito */
+  right: 80px; /* al lado del carrito */
   z-index: 999;
 }
 
@@ -284,7 +291,7 @@ main h2 {
   padding: 8px;
   border-bottom: 1px solid #eee;
   border-radius: 5px;
-  transition: background 0.2s;
+  transition:  0.2s;
 }
 
 .productos-favoritos .producto-favorito:hover {

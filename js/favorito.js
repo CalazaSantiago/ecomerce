@@ -38,6 +38,28 @@ function renderizarFavoritos() {
     });
 }
 
+function renderizarFavoritos() {
+    const contenedor = document.querySelector('.productos-favoritos');
+    contenedor.innerHTML = '';
+
+    favoritos.forEach(producto => {
+        const item = document.createElement('div');
+        item.className = 'producto-favorito';
+        item.innerHTML = `
+            <div>
+              <p><strong>${producto.nombre}</strong></p>
+              <p>$${producto.precio.toLocaleString()}</p>
+            </div>
+            <div>
+              <button onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">🛒</button>
+              <button onclick="quitarFavorito('${producto.nombre}')">🗑️</button>
+            </div>
+        `;
+        contenedor.appendChild(item);
+    });
+}
+
+
 function quitarFavorito(nombre) {
     favoritos = favoritos.filter(p => p.nombre !== nombre);
     localStorage.setItem('favoritos', JSON.stringify(favoritos));
