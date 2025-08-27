@@ -37,6 +37,12 @@ header {
   font-weight: bold;
 }
 
+.btn-agregar.en-carrito {
+  background-color: #4caf50; /* Verde, por ejemplo */
+  color: white;
+  border: 1px solid #388e3c;
+}
+
 nav a {
   margin: 0 0.5rem;
   text-decoration: none;
@@ -318,5 +324,15 @@ main h2 {
   background: darkred;
 }
 
+/* Alineación de los iconos de favoritos y carrito en el header */
+.iconos-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* Ajusta el espacio entre el corazón y el carrito */
+  position: relative;
+}
 
+.favoritos-container, .carrito-container {
+  position: static;
+}
 
