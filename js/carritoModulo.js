@@ -88,3 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function cerrarCarrito() {
     document.querySelector('.carrito').style.display = 'none';
 }
+
+window.agregarAlCarrito = agregarAlCarrito;
+window.agregarAFavoritos = agregarAFavoritos;

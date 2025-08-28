@@ -33,3 +33,6 @@ const toggleBtnFavoritos = (item, iconoFavorito) => {
     iconoFavorito.classList.toggle("fa-heart")
 }
 <button class="btn-favorito" data-id="1" data-nombre="Producto 1" data-precio="500">❤️ Favorito</button>
+
+window.agregarAlCarrito = agregarAlCarrito;
+window.agregarAFavoritos = agregarAFavoritos;

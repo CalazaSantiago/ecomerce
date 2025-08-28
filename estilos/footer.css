@@ -4,3 +4,7 @@ footer{
     text-align: center;
     padding: 2rem;
 }
+
+#footer, footer{
+    margin-top: auto;
+}

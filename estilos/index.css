@@ -22,6 +22,10 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: var(--color-fondo);
   color: var(--color-texto);
+
+    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -61,6 +65,7 @@ nav a {
 main {
   padding: 4rem;
   text-align: center;
+  flex: 1;
 }
 
 main h2 {

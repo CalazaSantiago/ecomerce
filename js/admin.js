@@ -44,3 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
     cerrarEditar.onclick = () => modalEditar.classList.remove('activo');
   }
 });
+
+window.agregarAlCarrito = agregarAlCarrito;
+window.agregarAFavoritos = agregarAFavoritos;

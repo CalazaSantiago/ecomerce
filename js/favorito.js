@@ -77,3 +77,6 @@ document.querySelectorAll('.bf').forEach(btn => {
         btn.classList.add('activo');
     }
 });
+
+window.agregarAlCarrito = agregarAlCarrito;
+window.agregarAFavoritos = agregarAFavoritos;
