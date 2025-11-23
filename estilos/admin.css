@@ -33,20 +33,20 @@ header {
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 nav a {
-  margin: 0 15px;
+  margin: 0 0.5rem;
   text-decoration: none;
   color: #000;
   font-weight: 500;
 }
 
 .icons span {
-  margin-left: 15px;
-  font-size: 20px;
+  margin-left: 1rem;
+  font-size: 1rem;
 }
 
 main {
@@ -56,11 +56,11 @@ main {
 
 main h2 {
   font-size: 2em;
-  margin-bottom: 40px;
+  margin-bottom: 1rem;
   color: #4a2f13;
 }
 
-.btn-agregar{
+  .btn-agregar{
   padding: 0.1rem 0.1rem;
   background: var(--color-boton);
   font-size: 1em;
@@ -69,6 +69,18 @@ main h2 {
   border-radius: 0.5rem;
   cursor: pointer;
 }
+
+
+.btn-editar{
+  padding: 0.1rem 0.1rem;
+  background: var(--color-boton);
+  font-size: 1em;
+  color: #181818;
+  border: 1rem solid var(--color-boton);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
 
 .productos {
   display: flex;
@@ -95,7 +107,7 @@ main h2 {
 
 .producto .name {
   font-weight: bold;
-  margin: 10px 0 5px;
+  margin: 1rem 0 5px;
 }
 
 .producto .precio {
@@ -112,18 +124,27 @@ main h2 {
   color: var(--color-descuento);
 }
 
-.carrito {
-  position: fixed;
-  top: 60px;
-  right: 20px;
-  width: 280px;
-  background-color: var(--color-carrito-fondo);
-  border: 1px solid var(--color-carrito-borde);
-  padding: 16px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  z-index: 999;
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+  .productos {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .carrito {
+    position: static;
+    width: 90vw;
+    margin: 1rem auto;
+    font-size: 12px;
+  }
+  main {
+    padding: 1rem;
+  }
 }
 
-.oculto {
-  display: none;
-}
+
+

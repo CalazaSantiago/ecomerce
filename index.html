@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Elegant</title>
   <link rel="shortcut icon" href="assets/img/logofino.jpg" type="image/x-icon">
-  <link rel="stylesheet" href="estilos/inicio.css"/>
+  <link rel="stylesheet" href="estilos/index.css"/>
+  <link rel="stylesheet" href="estilos/footer.css">
   <script src="js/modulo.js" defer></script> 
 </head>
 <body>
@@ -14,89 +15,15 @@
     
   <main>
     <h2>Nuevo In - Elegant</h2>
-    <section class="productos">
-      <div class="producto">
-        <img src="assets/img/remeranegra.webp" alt="Remera Vice" >
-        <p class="name">REMERA OVERSIZE VICE</p>
-        <p class="precio">$38.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">Agregar 🛒</button>
-      
-
-      </div>
-      <div class="producto">
-        <img src="assets/img/remerablanca.webp" alt="Remera Stick">
-        <p class="name">REMERA OVERSIZE STICK</p>
-        <p class="precio">$38.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">Agregar 🛒</button>
-      </div>
-      <div class="producto">
-        <img src="assets/img/buzonegro.webp" alt="Remera Ice">
-        <p class="name">REMERA OVERSIZE ICE</p>
-        <p class="precio">$38.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">Agregar 🛒</button>
-      </div>
-      <div class="producto">
-        <img src="assets/img/gorra.webp" alt="Polo Positano">
-        <p class="name">POLO POSITANO BORDADO</p>
-        <p class="precio">$58.000,00</p>
-        <p class="descuento">$52.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="58.000,00">Agregar 🛒</button>
-      </div>
-    </section>
-
-    <section class="productos">
-      <div class="producto">
-        <img src="assets/img/buzotssy.webp" alt="Remera Vice">
-        <p class="name">BUZO CANDY</p>
-        <p class="precio">$68.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="68.000,00">Agregar 🛒</button>
-      </div>
-      <div class="producto">
-        <img src="assets/img/tusyclub.webp" alt="Remera Stick">
-        <p class="name">REMERA TSSY CLUB</p>
-        <p class="precio">$38.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">Agregar 🛒</button>
-      </div>
-      <div class="producto">
-        <img src="assets/img/ojotas.webp" alt="Remera Ice">
-        <p class="name">Ojotas Facha</p>
-        <p class="precio">$38.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">Agregar 🛒</button>
-      </div>
-      <div class="producto">
-        <img src="assets/img/remeraice.webp" alt="Polo Positano">
-        <p class="name">REMERA OVERSIZE ICE</p>
-        <p class="precio">$58.000,00</p>
-        <p class="descuento">$52.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Buzo Candy" data-precio="58.000,00">Agregar 🛒</button>
-      </div>
+    <section class="productos" id="productos-lista">
+      <!-- aca se cargan los productos -->
     </section>
   </main>
-
-  <div id="carrito" class="carrito oculto">
-  <h2>Carrito</h2>
-  <ul id="carrito-lista"></ul>
-  <p>Total: $<span id="carrito-total">0</span></p>
-  <button>Finalizar compra</button>
-  <button id="vaciar-carrito">Vaciar carrito</button>
-  </div>
-
-
 
 
 <div id="modal-producto1" class="modal">
 
-
-
 <div id="footer"></div>
-
-
 
 <!-- Modal-->
 <input type="checkbox" id="modal-toggle" class="modal-toggle" hidden>
@@ -106,4 +33,8 @@
     <script src="./js/favoritoModulos.js"></script>
     <script src="/js/tienda.js"></script>
 </body>
+<script src="js/carritoModulo.js"></script>
+<script src="js/favorito.js"></script>
+<script src="js/favoritoModulo.js"></script>
+<script src="js/cargarProductos.js"></script>
 </html>

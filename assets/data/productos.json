@@ -1,0 +1,37 @@
+[
+  {
+    "nombre": "REMERA OVERSIZE VICE",
+    "precio": 38000,
+    "precioTransferencia": 34200,
+    "imagen": "assets/img/remeranegra.webp",
+    "alt": "Remera Vice"
+  },
+  {
+    "nombre": "REMERA OVERSIZE STICK",
+    "precio": 38000,
+    "precioTransferencia": 34200,
+    "imagen": "assets/img/remerablanca.webp",
+    "alt": "Remera Stick"
+  },
+  {
+    "nombre": "BUZO NEGRO",
+    "precio": 38000,
+    "precioTransferencia": 34200,
+    "imagen": "assets/img/buzonegro.webp",
+    "alt": "Remera Ice"
+  },
+  {
+    "nombre": "POLO POSITANO BORDADO",
+    "precio": 58000,
+    "precioTransferencia": 52200,
+    "imagen": "assets/img/gorra.webp",
+    "alt": "Polo Positano"
+  },
+  {
+    "nombre": "BUZO CANDY",
+    "precio": 68000,
+    "precioTransferencia": 34200,
+    "imagen": "assets/img/buzotssy.webp",
+    "alt": "Remera Vice"
+  }
+]

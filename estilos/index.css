@@ -1,0 +1,350 @@
+:root {
+  --color-fondo: #ffffff;
+  --color-texto: #000000;
+  --color-precio: #333333;
+  --color-descuento: #666666;
+  --color-primario: #0033ff;
+  --color-secundario: #e0e0e0;
+  --color-carrito-fondo: #f9f9f9;
+  --color-carrito-borde: #ddd;
+  --fuente-principal: 'Arial', sans-serif;
+  --color-boton: #fec195;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+
+    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+  header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+
+  padding: 2rem 4rem;
+  border-bottom: 1px solid var(--color-secundario);
+}
+
+.logo {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.btn-agregar.en-carrito {
+  background-color: #4caf50; /* Verde, por ejemplo */
+  color: white;
+  border: 1px solid #388e3c;
+}
+
+nav a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+.icons span {
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+
+main {
+  padding: 4rem;
+  text-align: center;
+  flex: 1;
+}
+
+main h2 {
+  font-size: 2em;
+  margin-bottom: 1rem;
+  color: #4a2f13;
+}
+
+  .btn-agregar{
+  padding: 0.1rem 0.1rem;
+  background: var(--color-boton);
+  font-size: 1em;
+  color: #181818;
+  border: 1rem solid var(--color-boton);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.producto {
+  border: 1px solid #eee;
+  padding: 1rem;
+  transition: transform 0.3s;
+}
+
+.producto:hover {
+  transform: scale(1.03);
+}
+
+.producto img {
+  width: 100%;
+  max-height: 25vh;
+  object-fit: contain;
+}
+
+.producto .name {
+  font-weight: bold;
+  margin: 1rem 0 5px;
+}
+
+.producto .precio {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.producto .descuento {
+  font-size: 1em;
+  color: #444;
+}
+
+.producto .descuento span {
+  color: var(--color-descuento);
+}
+
+ /* carrito estilos  */
+.carrito {
+
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    width: 15vw; /* Ajusta este valor si querés más/menos ancho */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 1.4rem;
+    z-index: 999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-size: 14px;
+}
+
+.carrito .producto {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.carrito .cantidad {
+    display: flex;
+    align-items: center;
+}
+
+.carrito .cantidad input {
+    width: 3vw;
+    text-align: center;
+    margin: 0 5px;
+}
+
+.carrito .eliminar {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.cerrar-carrito {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #333;
+  z-index: 1001;
+}
+
+.btn-product{
+  background: var(--color-boton);
+  font-size: 1em;
+  color: #181818;
+  border: 0.6rem solid var(--color-boton);
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+.input-prod{
+  background-color: var(--color-boton);
+  height: 2rem;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+  .productos {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .carrito {
+    position: static;
+    width: 90vw;
+    margin: 1rem auto;
+    font-size: 12px;
+  }
+  main {
+    padding: 1rem;
+  }
+  .favoritos-container {
+    top: 70px;   /* lo bajamos un poco para no tapar el menú */
+    right: 20px;
+  }
+}
+
+/* Botón de agregar a favoritos */
+.bf {
+  padding: 0.4rem 0.8rem;
+  background: var(--color-primario);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s,  0.2s;
+}
+
+.bf:hover {
+  transform: scale(1.1);
+}
+
+/* Botón activo (producto agregado a favoritos) */
+.bf.activo {
+  background: darkred;
+  color: #fff;
+}
+
+/* Botón de favorito */
+.favorito-btn {
+  padding: 0.3rem 0.6rem;
+  background: var(--color-primario);
+  font-size: 1em;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, 0.2s;
+}
+
+.favorito-btn:hover {
+  background: darkblue;
+  transform: scale(1.1);
+}
+
+/* Contenedor del panel de favoritos */
+.favoritos-container {
+  position: fixed;
+  top: 20px;
+  right: 80px; /* al lado del carrito */
+  z-index: 999;
+}
+
+/* Icono de favoritos */
+.favoritos-icono {
+  font-size: 28px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.favoritos-icono:hover {
+  transform: scale(1.2);
+}
+
+/* Panel de favoritos */
+.favoritos {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 15px;
+  width: 280px;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  border-radius: 10px;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Productos dentro del panel */
+.productos-favoritos .producto-favorito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  border-radius: 5px;
+  transition:  0.2s;
+}
+
+.productos-favoritos .producto-favorito:hover {
+  background: #f5f5f5;
+}
+
+/* Botón de eliminar */
+.productos-favoritos .producto-favorito button {
+  background: #f44;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:  0.2s;
+}
+
+.productos-favoritos .producto-favorito button:hover {
+  background: darkred;
+}
+
+/* Botón cerrar panel */
+.cerrar-favoritos {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background: #f44;
+  color: #fff;
+  border: none;
+  padding: 6px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:  0.2s;
+}
+
+.cerrar-favoritos:hover {
+  background: darkred;
+}
+
+/* Alineación de los iconos de favoritos y carrito en el header */
+.iconos-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* Ajusta el espacio entre el corazón y el carrito */
+  position: relative;
+}
+
+.favoritos-container, .carrito-container {
+  position: static;
+}
+

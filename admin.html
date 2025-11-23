@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Elegant</title>
   <link rel="shortcut icon" href="assets/img/logofino.jpg" type="image/x-icon">
-  <link rel="stylesheet" href="estilos/inicio.css"/>
-  <script src="js/modulo.js" defer></script> 
+  <link rel="stylesheet" href="estilos/admin.css"/>
+   <link rel="stylesheet" href="estilos/estilomodulo.css">
+   <link rel="stylesheet" href="estilos/footer.css">
 </head>
 <body>
   
@@ -14,14 +15,19 @@
     
   <main>
     <h2>Nuevo In - Elegant</h2>
-     <a href="#modal-producto1" class="btn-agregar">Añadir</a>
+<button type="button" class="btn-agregar" id="abrir-modal">Añadir</button>
+
+    <br>
+    <br>
+    <br>
+
     <section class="productos">
       <div class="producto">
         <img src="assets/img/remeranegra.webp" alt="Remera Vice" >
         <p class="name">REMERA OVERSIZ VICE</p>
         <p class="precio">$38.000,00</p>
         <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">editar</button>
+        <button class="btn-editar" data-id="1">Editar</button>
       <a href="#modal-producto1" class="btn-agregar">eliminar</a>
 
       </div>
@@ -30,7 +36,7 @@
         <p class="name">REMERA OVERSIZE STICK</p>
         <p class="precio">$38.000,00</p>
         <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">editar</button>
+        <button class="btn-editar" data-id="1">Editar</button>
         <a href="#modal-producto1" class="btn-agregar">eliminar</a>
 
       </div>
@@ -39,7 +45,7 @@
         <p class="name">REMERA OVERSIZE ICE</p>
         <p class="precio">$38.000,00</p>
         <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">editar</button>
+        <button class="btn-editar" data-id="1">Editar</button>
         <a href="#modal-producto1" class="btn-agregar">eliminar</a>
 
       </div>
@@ -48,7 +54,7 @@
         <p class="name">POLO POSITANO BORDADO</p>
         <p class="precio">$58.000,00</p>
         <p class="descuento">$52.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">editar</button>
+        <button class="btn-editar" data-id="1">Editar</button>
         <a href="#modal-producto1" class="btn-agregar">eliminar</a>
 
       </div>
@@ -60,7 +66,7 @@
         <p class="name">BUZO CANDY</p>
         <p class="precio">$68.000,00</p>
         <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">editar</button>
+          <button class="btn-editar" data-id="1">Editar</button>
          <a href="#modal-producto1" class="btn-agregar">eliminar</a>
 
       </div>
@@ -69,7 +75,7 @@
         <p class="name">REMERA TUSSY CLUB</p>
         <p class="precio">$38.000,00</p>
         <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">editar</button>
+        <button class="btn-editar" data-id="1">Editar</button>
          <a href="#modal-producto1" class="btn-agregar">eliminar</a>
 
       </div>
@@ -78,38 +84,69 @@
         <p class="name">Ojotas Facha</p>
         <p class="precio">$38.000,00</p>
         <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">editar</button>
+        <button class="btn-editar" data-id="1">Editar</button>
          <a href="#modal-producto1" class="btn-agregar">eliminar</a>
 
       </div>
-      <div class="producto">
-        <img src="assets/img/remeraice.webp" alt="Polo Positano">
-        <p class="name">REMERA OVERSIZE ICE</p>
-        <p class="precio">$58.000,00</p>
-        <p class="descuento">$52.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-agregar" data-nombre="Remera Oversize Vice" data-precio="38.000,00">editar</button>
-         <a href="#modal-producto1" class="btn-agregar">eliminar</a>
-
       </div>
     </section>
   </main>
 
-  <div id="carrito" class="carrito oculto">
-  <h2>Carrito</h2>
-  <ul id="carrito-lista"></ul>
-  <p>Total: $<span id="carrito-total">0</span></p>
-  <button>Finalizar compra</button>
-  <button id="vaciar-carrito">Vaciar carrito</button>
-  <button onclick="aumentarCantidad ('${producto.nombre}')">+</button>
-  <button onclick="disminuirCantidad ('${producto.nombre}')">-</button>
-  <button onclick="eliminarproducto ('${producto.nombre}')">X</button>
-  </div>
-
-
 <div id="footer"></div>
 
-<!-- Modal-->
-<input type="checkbox" id="modal-toggle" class="modal-toggle" hidden>
+
+<!-- formulario modal -->
+<div id="modal-destino" class="modal">
+
+  <div class="modal-contenido">
+
+    <span class="cerrar" id="cerrar-modal">&times;</span>
+    <h3 id="modal-titulo">Agregar un Producto</h3>
+    
+    <form id="form-destino">
+      
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="imagen">Imagen de referencia (URL)</label>
+      <input type="url" id="imagen" name="imagen" required>
+
+      <label for="precio">Precio</label>
+      <input type="number" id="precio" name="precio" required>
+
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+
+      <button type="submit" class="btn-agregar">Guardar cambios</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal de edición -->
+<div id="modal-editar" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" id="cerrar-modal-editar">&times;</span>
+    <h3>Editar Producto</h3>
+    <form id="form-editar">
+      <label for="editar-nombre">Nombre</label>
+      <input type="text" id="editar-nombre" name="nombre" required>
+
+      <label for="editar-imagen">Imagen de referencia (URL)</label>
+      <input type="url" id="editar-imagen" name="imagen" required>
+
+      <label for="editar-precio">Precio</label>
+      <input type="number" id="editar-precio" name="precio" required>
+
+      <label for="editar-descripcion">Descripción</label>
+      <textarea id="editar-descripcion" name="descripcion" rows="4" required></textarea>
+
+      <button type="submit" class="btn-agregar">Guardar cambios</button>
+    </form>
+  </div>
+</div>
 
 </body>
+<script src="js/admin.js"></script>
+<script src="js/modulo.js"></script>
+<script src="js/carritoModulo.js"></script>
 </html>
