@@ -19,11 +19,11 @@ body {
   margin: 0;
   padding: var(--padding);
 }
-form{
+form {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 50vh;
+  min-height: 60vh;
 }
 
 .login-container {
@@ -33,6 +33,7 @@ form{
   flex-direction: column;
   gap: var(--gap);
   color: var(--color-texto);
+  margin: auto;
 }
 
 h1 {
@@ -48,20 +49,28 @@ input {
   border-radius: 0.25em;
   background: var(--color-input);
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .password-container {
   position: relative;
+  width: 100%;
 }
 
 .login-button {
-  background-color: var(--color-principal);
+  background-color: #a37454;
   color: white;
   padding: 0.9em;
   border: none;
   border-radius: 0.25em;
   font-size: 1rem;
   cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+}
+
+.login-button:hover {
+  opacity: 0.8;
 }
 
 .registro {
@@ -80,4 +89,10 @@ a{
     text-decoration: none;
     color: var(--color-input);
     font-weight: 500;
+}
+
+.btn-login-2 {
+    font-size: 0.9rem;
+    color: #000;
+    text-decoration: underline;
 }

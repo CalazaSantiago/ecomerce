@@ -3,108 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Elegant</title>
+  <title>Admin - Elegant</title>
   <link rel="shortcut icon" href="assets/img/logofino.jpg" type="image/x-icon">
-  <link rel="stylesheet" href="estilos/admin.css"/>
-   <link rel="stylesheet" href="estilos/estilomodulo.css">
-   <link rel="stylesheet" href="estilos/footer.css">
+  <link rel="stylesheet" href="./estilos/admin.css"/>
+  <link rel="stylesheet" href="./estilos/admin-modal.css">
+  <link rel="stylesheet" href="./estilos/estilomodulo.css">
+  <link rel="stylesheet" href="./estilos/footer.css">
 </head>
 <body>
   
     <div id="header"></div>
     
   <main>
-    <h2>Nuevo In - Elegant</h2>
-<button type="button" class="btn-agregar" id="abrir-modal">Añadir</button>
+    <h2>Administrar Productos - Elegant</h2>
+    <button type="button" class="btn-agregar" id="abrir-modal">Añadir Producto</button>
 
     <br>
     <br>
     <br>
 
     <section class="productos">
-      <div class="producto">
-        <img src="assets/img/remeranegra.webp" alt="Remera Vice" >
-        <p class="name">REMERA OVERSIZ VICE</p>
-        <p class="precio">$38.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-editar" data-id="1">Editar</button>
-      <a href="#modal-producto1" class="btn-agregar">eliminar</a>
-
-      </div>
-      <div class="producto">
-        <img src="assets/img/remerablanca.webp" alt="Remera Stick">
-        <p class="name">REMERA OVERSIZE STICK</p>
-        <p class="precio">$38.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-editar" data-id="1">Editar</button>
-        <a href="#modal-producto1" class="btn-agregar">eliminar</a>
-
-      </div>
-      <div class="producto">
-        <img src="assets/img/buzonegro.webp" alt="Remera Ice">
-        <p class="name">REMERA OVERSIZE ICE</p>
-        <p class="precio">$38.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-editar" data-id="1">Editar</button>
-        <a href="#modal-producto1" class="btn-agregar">eliminar</a>
-
-      </div>
-      <div class="producto">
-        <img src="assets/img/gorra.webp" alt="Polo Positano">
-        <p class="name">POLO POSITANO BORDADO</p>
-        <p class="precio">$58.000,00</p>
-        <p class="descuento">$52.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-editar" data-id="1">Editar</button>
-        <a href="#modal-producto1" class="btn-agregar">eliminar</a>
-
-      </div>
-    </section>
-
-    <section class="productos">
-      <div class="producto">
-        <img src="assets/img/buzotssy.webp" alt="Remera Vice">
-        <p class="name">BUZO CANDY</p>
-        <p class="precio">$68.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-          <button class="btn-editar" data-id="1">Editar</button>
-         <a href="#modal-producto1" class="btn-agregar">eliminar</a>
-
-      </div>
-      <div class="producto">
-        <img src="assets/img/tusyclub.webp" alt="Remera Stick">
-        <p class="name">REMERA TUSSY CLUB</p>
-        <p class="precio">$38.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-editar" data-id="1">Editar</button>
-         <a href="#modal-producto1" class="btn-agregar">eliminar</a>
-
-      </div>
-      <div class="producto">
-        <img src="assets/img/ojotas.webp" alt="Remera Ice">
-        <p class="name">Ojotas Facha</p>
-        <p class="precio">$38.000,00</p>
-        <p class="descuento">$34.200,00 <span>con Transferencia bancaria</span></p>
-        <button class="btn-editar" data-id="1">Editar</button>
-         <a href="#modal-producto1" class="btn-agregar">eliminar</a>
-
-      </div>
-      </div>
+      <!-- Los productos se cargan dinámicamente aquí -->
     </section>
   </main>
 
 <div id="footer"></div>
 
-
-<!-- formulario modal -->
+<!-- formulario modal para agregar -->
 <div id="modal-destino" class="modal">
-
   <div class="modal-contenido">
-
     <span class="cerrar" id="cerrar-modal">&times;</span>
     <h3 id="modal-titulo">Agregar un Producto</h3>
     
     <form id="form-destino">
-      
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" required>
 
@@ -112,12 +43,12 @@
       <input type="url" id="imagen" name="imagen" required>
 
       <label for="precio">Precio</label>
-      <input type="number" id="precio" name="precio" required>
+      <input type="number" id="precio" name="precio" step="0.01" required>
 
       <label for="descripcion">Descripción</label>
       <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
 
-      <button type="submit" class="btn-agregar">Guardar cambios</button>
+      <button type="submit" class="btn-agregar">Guardar</button>
     </form>
   </div>
 </div>
@@ -135,7 +66,7 @@
       <input type="url" id="editar-imagen" name="imagen" required>
 
       <label for="editar-precio">Precio</label>
-      <input type="number" id="editar-precio" name="precio" required>
+      <input type="number" id="editar-precio" name="precio" step="0.01" required>
 
       <label for="editar-descripcion">Descripción</label>
       <textarea id="editar-descripcion" name="descripcion" rows="4" required></textarea>
@@ -145,8 +76,9 @@
   </div>
 </div>
 
-</body>
-<script src="js/admin.js"></script>
-<script src="js/modulo.js"></script>
+<script src="js/modulo.js" defer></script>
+<script src="js/adminVerify.js" defer></script>
+<script src="js/admin.js" defer></script>
 <script src="js/carritoModulo.js"></script>
+</body>
 </html>

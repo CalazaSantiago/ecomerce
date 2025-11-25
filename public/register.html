@@ -5,35 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos/index.css">
     <link rel="stylesheet" href="estilos/register.css">
-    <script src="js/modulo.js" defer></script>
+    <script src="./js/modulo.js" defer></script>
     <title>Document</title>
 </head>
 <body>
   <div id="header"></div>
 
-    <form action="/register" method="POST">
+    <form id="registerForm" class="login-container">
+        <h1>Registrate en Elegant</h1>
+        
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        
+        <div class="password-container">
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+        </div>
 
-    <div class="login-container">
-    <h1>Registrate en Elegant</h1>
-    
-    <input type="text" id="text" placeholder="Nombre">
+        <div class="password-container">
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="Repetir Contraseña" required>
+        </div>
 
-    <input type="email" id="email" placeholder="Email">
-    
-    <div class="password-container">
-      <input type="password" id="password" placeholder="Contraseña">
-    </div>
-
-    <div class="password-container">
-        <input type="password" name="password" id="password" placeholder="Repetir Contraseña">
-    </div>
-    
-    <a href="index.html" class="login-button">Registrarme</a></button>
-    
-  </div>
+        <button type="submit" class="login-button">Registrarme</button>
+        <p>¿Ya tienes cuenta?<a class="btn-login-2" href="login.html">Inicia sesión</a></p>
     </form>
+
+  
+    <script src="./js/carritoModulo.js"></script>
+    <script src="./js/favoritoModulo.js"></script>
+    <script src="./js/register.js"></script>
 </body>
-<script src="js/carritoModulo.js"></script>
-<script src="js/favorito.js"></script>
-<script src="js/favoritoModulo.js"></script>
 </html>

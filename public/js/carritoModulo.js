@@ -90,4 +90,5 @@ function cerrarCarrito() {
 }
 
 window.agregarAlCarrito = agregarAlCarrito;
-window.agregarAFavoritos = agregarAFavoritos;
+window.cambiarCantidad = cambiarCantidad;
+window.eliminarProducto = eliminarProducto;

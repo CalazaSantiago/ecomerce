@@ -1,34 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos/login.css">
-    <link rel="stylesheet" href="estilos/index.css">
-    <script src="js/modulo.js" defer></script>
-    <title>Elegant</title>
+    <link rel="stylesheet" href="./estilos/index.css">
+    <link rel="stylesheet" href="./estilos/login.css">
+    <title>Login - Elegant</title>
 </head>
 <body>
     <div id="header"></div>
-
-    <form action="">
-    <div class="login-container">
-    <h1>Iniciar sesión</h1>
     
-    <input type="email" id="email" placeholder="Email">
-    
-    <div class="password-container">
-      <input type="password" id="password" placeholder="Contraseña">
-    </div>
-    
-    <button class="login-button"><a href="index.html">Iniciar Sesion</a></button>
-    
-    <p class="registro">¿No tenés cuenta aún? <a href="register.html">Crear cuenta</a></p>
-  </div>
+    <form id="loginForm" class="login-container">
+        <h1>Inicia Sesión</h1>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button type="submit" class="login-button">Ingresar</button>
+        <p>¿No tienes cuenta? <a class="btn-login-2" href="register.html">Regístrate</a></p>
     </form>
 
+    <script src="./js/modulo.js" defer></script>
+    <script src="./js/favoritoModulo.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/carritoModulo.js"></script>
 </body>
-<script src="js/carritoModulo.js"></script>
-<script src="js/favorito.js"></script>
-<script src="js/favoritoModulo.js"></script>
 </html>
+
+

@@ -1,74 +1,71 @@
-<<<<<<< HEAD
-//recuperar favoritos del locarlStorage o iniciarlo como un array vacio
-=======
-// recuperar favoritos del localStorage o iniciarlo vacío
->>>>>>> a35ec5a7d0759a31320765e4251ec63acb808f65
+// ...existing code...
+// declarar array global de favoritos
+let favoritos = [];
+
+//recuperar favoritos del localStorage o iniciarlo como un array vacio
 const recuperarFavoritos = () => {
-    return favoritos = JSON.parse(localStorage.getItem("favoritos")) || []
+    favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    return favoritos;
 }
 
-<<<<<<< HEAD
 //eliminar de favoritos
-=======
-// eliminar de favoritos
->>>>>>> a35ec5a7d0759a31320765e4251ec63acb808f65
 const eliminarDeFavoritos = (id) => {
-    recuperarFavoritos()
-    favoritos = favoritos.filter(i => i.id != id)
+    recuperarFavoritos();
+    favoritos = favoritos.filter(i => i.id != id);
     if (favoritos.length == 0) {
-        localStorage.removeItem("favoritos")
+        localStorage.removeItem("favoritos");
     } else {
-        localStorage.setItem("favoritos", JSON.stringify(favoritos))
+        localStorage.setItem("favoritos", JSON.stringify(favoritos));
     }
-<<<<<<< HEAD
-
 }
 
 //agregar nuevo item a favoritos
-=======
-}
-
-// agregar a favoritos
->>>>>>> a35ec5a7d0759a31320765e4251ec63acb808f65
 const agregarAFavoritos = (item) => {
-    recuperarFavoritos()
-    favoritos.push(item)
-    localStorage.setItem("favoritos", JSON.stringify(favoritos))
+    recuperarFavoritos();
+    // evitar duplicados
+    if (!favoritos.find(f => f.id == item.id)) {
+        favoritos.push(item);
+        localStorage.setItem("favoritos", JSON.stringify(favoritos));
+    }
 }
 
-<<<<<<< HEAD
-//cambiar icono favorito llamando al modulo eliminar o agregar según corresponda
+// cambiar icono favorito llamando al modulo eliminar o agregar según corresponda
 const toggleBtnFavoritos = (item, iconoFavorito) => {
-    // console.log(item, iconoFavorito)
-    recuperarFavoritos()
+    recuperarFavoritos();
     if (iconoFavorito.classList.contains("fa-heart-circle-check")) {
-        // console.log("hay que eliminar de favoritos")
-        eliminarDeFavoritos(item.id)
+        eliminarDeFavoritos(item.id);
     } else {
-        // console.log("hay que agregar a favoritos")
-        agregarAFavoritos(item)
+        agregarAFavoritos(item);
     }
     //cambia icono favoritos
     iconoFavorito.classList.toggle("fa-heart-circle-check");
-    iconoFavorito.classList.toggle("fa-heart")
-
-
+    iconoFavorito.classList.toggle("fa-heart");
 }
 
-=======
-// alternar ícono favorito
-const toggleBtnFavoritos = (item, iconoFavorito) => {
-    recuperarFavoritos()
-    if (iconoFavorito.classList.contains("fa-heart-circle-check")) {
-        eliminarDeFavoritos(item.id)
+// función pública para alternar favorito (llamada desde otros scripts)
+// acepta: (item) ó (item, iconElement)
+const toggleFavoritos = (item, icono) => {
+    if (!item || !item.id) return;
+    recuperarFavoritos();
+    const exists = favoritos.find(f => f.id == item.id);
+    if (exists) {
+        eliminarDeFavoritos(item.id);
+        if (icono) {
+            icono.classList.remove('fa-heart-circle-check');
+            icono.classList.add('fa-heart');
+        }
     } else {
-        agregarAFavoritos(item)
+        agregarAFavoritos(item);
+        if (icono) {
+            icono.classList.remove('fa-heart');
+            icono.classList.add('fa-heart-circle-check');
+        }
     }
-    iconoFavorito.classList.toggle("fa-heart-circle-check");
-    iconoFavorito.classList.toggle("fa-heart")
+    return favoritos;
 }
-<button class="btn-favorito" data-id="1" data-nombre="Producto 1" data-precio="500">❤️ Favorito</button>
 
-window.agregarAlCarrito = agregarAlCarrito;
 window.agregarAFavoritos = agregarAFavoritos;
->>>>>>> a35ec5a7d0759a31320765e4251ec63acb808f65
+window.toggleFavoritos = toggleFavoritos;
+window.recuperarFavoritos = recuperarFavoritos;
+window.toggleBtnFavoritos = toggleBtnFavoritos;
+// ...existing code...

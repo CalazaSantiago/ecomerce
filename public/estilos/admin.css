@@ -86,42 +86,86 @@ main h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 3rem;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  padding: 2rem;
 }
 
 .producto {
-  border: 1px solid #eee;
-  padding: 1rem;
-  transition: transform 0.3s;
+  border: none;
+  padding: 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 280px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .producto:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Etiqueta de "Frescura" */
+.producto::before {
+  content: 'Frescura';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(74, 47, 19, 0.9);
+  color: white;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  z-index: 10;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .producto img {
   width: 100%;
-  max-height: 25vh;
-  object-fit: contain;
+  height: 250px;
+  object-fit: cover;
+  display: block;
 }
 
 .producto .name {
   font-weight: bold;
-  margin: 1rem 0 5px;
+  margin: 1rem 1rem 0.5rem;
+  font-size: 1rem;
+  color: #333;
 }
 
 .producto .precio {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0.5rem 1rem;
 }
 
 .producto .descuento {
-  font-size: 1em;
-  color: #444;
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.5rem 1rem;
 }
 
 .producto .descuento span {
   color: var(--color-descuento);
+}
+
+.producto .descripcion {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.5rem 1rem;
+  min-height: 40px;
+}
+
+.producto button {
+  margin: 0 0.5rem 1rem;
 }
 
 @media (max-width: 768px) {
