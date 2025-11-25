@@ -25,6 +25,8 @@ pool.getConnection()
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+import crypto from "crypto"; // <-- AGREGAR ESTO ARRIBA
+
 app.post('/register', async (req, res) => {
     try {
         const email = (req.body.email || '').trim().toLowerCase();
@@ -40,8 +42,17 @@ app.post('/register', async (req, res) => {
             return res.redirect('/register.html?error=exists');
         }
 
+        // Hashear contraseña
         const hash = await bcrypt.hash(password, 10);
-        await pool.execute('INSERT INTO users (email, password) VALUES (?, ?)', [email, hash]);
+
+        // Generar token
+        const token = crypto.randomBytes(32).toString("hex");
+
+        // INSERT con contraseña + token
+        await pool.execute(
+            'INSERT INTO users (email, password, token) VALUES (?, ?, ?)',
+            [email, hash, token]
+        );
 
         return res.redirect('/index.html?registered=1');
     } catch (err) {
@@ -49,6 +60,7 @@ app.post('/register', async (req, res) => {
         return res.redirect('/register.html?error=server');
     }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`);
