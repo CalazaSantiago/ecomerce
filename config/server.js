@@ -25,7 +25,9 @@ pool.getConnection()
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-import crypto from "crypto"; // <-- AGREGAR ESTO ARRIBA
+// =====================
+//       REGISTER
+// =====================
 
 app.post('/register', async (req, res) => {
     try {
@@ -37,21 +39,18 @@ app.post('/register', async (req, res) => {
             return res.redirect('/register.html?error=invalid');
         }
 
-        const [rows] = await pool.execute('SELECT id FROM users WHERE email = ? LIMIT 1', [email]);
+        const [rows] = await pool.execute(
+            'SELECT id FROM users WHERE email = ? LIMIT 1',
+            [email]
+        );
         if (rows.length > 0) {
             return res.redirect('/register.html?error=exists');
         }
 
-        // Hashear contraseña
         const hash = await bcrypt.hash(password, 10);
-
-        // Generar token
-        const token = crypto.randomBytes(32).toString("hex");
-
-        // INSERT con contraseña + token
         await pool.execute(
-            'INSERT INTO users (email, password, token) VALUES (?, ?, ?)',
-            [email, hash, token]
+            'INSERT INTO users (email, password) VALUES (?, ?)',
+            [email, hash]
         );
 
         return res.redirect('/index.html?registered=1');
@@ -61,6 +60,77 @@ app.post('/register', async (req, res) => {
     }
 });
 
+// =============================
+//   CRUD DE PRODUCTOS (NUEVO)
+// =============================
+
+// Obtener todos los productos
+app.get('/productos', async (req, res) => {
+    try {
+        const [rows] = await pool.execute('SELECT * FROM products');
+        res.json(rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Error al obtener productos' });
+    }
+});
+
+// Agregar producto
+app.post('/productos', async (req, res) => {
+    try {
+        const { nombre, precio, descripcion, imagen } = req.body;
+
+        if (!nombre || !precio) {
+            return res.status(400).json({ error: 'Nombre y precio son obligatorios' });
+        }
+
+        await pool.execute(
+            'INSERT INTO products (nombre, precio, descripcion, imagen) VALUES (?, ?, ?, ?)',
+            [nombre, precio, descripcion || '', imagen || '']
+        );
+
+        res.json({ mensaje: 'Producto agregado correctamente' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Error al agregar producto' });
+    }
+});
+
+// Editar producto
+app.put('/productos/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { nombre, precio, descripcion, imagen } = req.body;
+
+        await pool.execute(
+            'UPDATE products SET nombre=?, precio=?, descripcion=?, imagen=? WHERE id=?',
+            [nombre, precio, descripcion, imagen, id]
+        );
+
+        res.json({ mensaje: 'Producto actualizado' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Error al actualizar producto' });
+    }
+});
+
+// Eliminar producto
+app.delete('/productos/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        await pool.execute('DELETE FROM products WHERE id=?', [id]);
+
+        res.json({ mensaje: 'Producto eliminado' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Error al eliminar producto' });
+    }
+});
+
+// =====================
+//      SERVER
+// =====================
 
 app.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`);
