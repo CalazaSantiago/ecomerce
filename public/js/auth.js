@@ -15,12 +15,12 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('usuario', JSON.stringify(data.usuario));
         
-        // Si es admin, pedir token adicional
+        // Si es admin, pedir token adicional (PRIMERA VERIFICACIÓN)
         if (data.usuario.role === 'admin') {
-            const adminToken = prompt('🔐 Acceso de Administrador\n\nPor favor, ingrese el token de administrador:');
+            const adminToken = prompt('VERIFICACIÓN DE ADMINISTRADOR (1/2)\n\nPor favor, ingrese su token secreto de la base de datos:');
             
             if (!adminToken) {
-                alert('Token de administrador requerido');
+                alert('Token de administrador requerido para continuar');
                 localStorage.removeItem('token');
                 localStorage.removeItem('usuario');
                 return;
@@ -30,13 +30,16 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
             const verifyRes = await fetch('/api/usuarios/admin/verify-token', {
                 method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${data.token}`,
                     'x-admin-token': adminToken
                 }
             });
             
+            const verifyData = await verifyRes.json();
+            
             if (!verifyRes.ok) {
-                alert('Token de administrador inválido');
+                alert('Token de administrador inválido: ' + (verifyData.error || 'Verificación fallida'));
                 localStorage.removeItem('token');
                 localStorage.removeItem('usuario');
                 return;
@@ -44,6 +47,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
             
             // Guardar el token de admin para futuras peticiones
             localStorage.setItem('adminToken', adminToken);
+            alert('Token verificado correctamente');
         }
         
         window.location.href = '/index.html';
