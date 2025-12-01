@@ -4,7 +4,17 @@ let producto;
 
 function toggleCarrito() {
     const carritoElemento = document.querySelector('.carrito');
+    const favoritosPanel = document.querySelector('.favoritos');
+    
+    // Cerrar favoritos si está abierto
+    if (favoritosPanel) favoritosPanel.style.display = 'none';
+    
     carritoElemento.style.display = carritoElemento.style.display === 'none' ? 'block' : 'none';
+}
+
+function cerrarCarrito() {
+    const carritoElemento = document.querySelector('.carrito');
+    if (carritoElemento) carritoElemento.style.display = 'none';
 }
 
 /**
@@ -136,6 +146,33 @@ function renderizarCarrito() {
     const totalElem = document.querySelector('.total');
     if (totalElem) totalElem.textContent = `Total: $${total.toLocaleString()}`;
 }
+
+function vaciarCarrito() {
+    if (carrito.length === 0) {
+        alert('El carrito ya está vacío');
+        return;
+    }
+    
+    if (confirm('¿Estás seguro de que deseas vaciar el carrito?')) {
+        // Limpiar clases de botones antes de vaciar
+        carrito.forEach(item => {
+            const botonById = item.id !== undefined ? document.querySelector(`.addcarrito[data-id="${item.id}"]`) : null;
+            const botonByName = document.querySelector(`.btn-agregar[data-nombre="${item.nombre}"]`);
+            if (botonById) botonById.classList.remove('en-carrito');
+            if (botonByName) botonByName.classList.remove('en-carrito');
+        });
+        
+        carrito = [];
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        renderizarCarrito();
+        alert('Carrito vaciado correctamente');
+    }
+}
+
+// Exponer funciones globalmente
+window.toggleCarrito = toggleCarrito;
+window.cerrarCarrito = cerrarCarrito;
+window.vaciarCarrito = vaciarCarrito;
 
 // Al cargar la página, marca los botones de productos que ya están en el carrito
 document.addEventListener('DOMContentLoaded', () => {

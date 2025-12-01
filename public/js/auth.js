@@ -14,6 +14,38 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
     if (data.success) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('usuario', JSON.stringify(data.usuario));
+        
+        // Si es admin, pedir token adicional
+        if (data.usuario.role === 'admin') {
+            const adminToken = prompt('🔐 Acceso de Administrador\n\nPor favor, ingrese el token de administrador:');
+            
+            if (!adminToken) {
+                alert('Token de administrador requerido');
+                localStorage.removeItem('token');
+                localStorage.removeItem('usuario');
+                return;
+            }
+            
+            // Verificar el token de admin
+            const verifyRes = await fetch('/api/usuarios/admin/verify-token', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${data.token}`,
+                    'x-admin-token': adminToken
+                }
+            });
+            
+            if (!verifyRes.ok) {
+                alert('Token de administrador inválido');
+                localStorage.removeItem('token');
+                localStorage.removeItem('usuario');
+                return;
+            }
+            
+            // Guardar el token de admin para futuras peticiones
+            localStorage.setItem('adminToken', adminToken);
+        }
+        
         window.location.href = '/index.html';
     } else {
         alert(data.error);

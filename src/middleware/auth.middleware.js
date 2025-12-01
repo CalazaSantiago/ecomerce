@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import pool from '../../config/server.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'tu_clave_secreta_super_segura';
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'ADMIN2025SECRET';
 
 // Middleware para verificar token JWT
 export const verificarToken = (req, res, next) => {
@@ -42,5 +43,25 @@ export const verificarAdmin = async (req, res, next) => {
     }
 };
 
-export { JWT_SECRET };
+// Middleware para verificar token adicional de admin
+export const verificarTokenAdmin = (req, res, next) => {
+    const adminToken = req.headers['x-admin-token'];
+    console.log('🔍 Verificando token de admin...');
+    console.log('   Token recibido:', adminToken);
+    console.log('   Token esperado:', ADMIN_TOKEN);
+    console.log('   ¿Son iguales?:', adminToken === ADMIN_TOKEN);
+    
+    if (!adminToken) {
+        console.log('   ❌ Token de admin no enviado');
+        return res.status(401).json({ error: 'Token de admin requerido' });
+    }
+    if (adminToken !== ADMIN_TOKEN) {
+        console.log('   ❌ Token de admin no coincide');
+        return res.status(403).json({ error: 'Token de admin inválido' });
+    }
+    console.log('   ✅ Token de admin válido');
+    next();
+};
+
+export { JWT_SECRET, ADMIN_TOKEN };
 

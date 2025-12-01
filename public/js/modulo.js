@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const headerEl = document.getElementById("header");
+        const headerEl = document.getElementById("header");
     if (headerEl) {
         const token = localStorage.getItem('token');
         const acederLink = token ? `<a href="#" id="btn-logout">CERRAR SESION</a>` : `<a href="login.html">ACCEDER</a>`;
@@ -9,15 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="logo">Elegant™</div>
           <nav>
             <a href="index.html">SHOP</a>
-            <a href="#">NEW IN</a>
             <a href="contacto.html">CONTACT</a>
             <a href="admin.html" style="display: none;" id="admin-link">ADMIN</a>
             ${acederLink}
-            <a href="favorito.html">❤</a>
           </nav>
           <div class="iconos-header">
             <div class="favoritos-container">
-              <span class="favoritos-icono" id="btn-favoritos">❤️</span>
+              <span class="favoritos-icono" id="btn-favoritos">🖤</span>
               <div class="favoritos" style="display: none;">
                 <div class="productos-favoritos"></div>
               </div>
@@ -27,14 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="carrito" style="display: none;">
                 <div class="productos-carrito"></div>
                 <div class="total">Total: $0</div>
-                <a href="#" class="finalizar">Finalizar Compra</a>
+                <div class="carrito-botones">
+                  <button class="btn-finalizar" id="btn-finalizar">Finalizar Compra</button>
+                  <button class="btn-vaciar" id="btn-vaciar">Vaciar 🛒</button>
+                </div>
                 <button class="cerrar-carrito" id="cerrar-carrito">✖</button>
               </div>
             </div>
           </div>
-        </header>`;
-
-        // Agregar listener para logout
+        </header>`;        // Agregar listener para logout
         const btnLogout = document.getElementById('btn-logout');
         if (btnLogout) {
             btnLogout.addEventListener('click', (e) => {
@@ -69,8 +68,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const btnCerrarCarrito = document.getElementById('cerrar-carrito');
-    if (btnCerrarCarrito && typeof window.cerrarCarrito === 'function') {
-        btnCerrarCarrito.addEventListener('click', () => window.cerrarCarrito());
+    if (btnCerrarCarrito) {
+        btnCerrarCarrito.addEventListener('click', () => {
+            if (typeof window.cerrarCarrito === 'function') {
+                window.cerrarCarrito();
+            } else {
+                const carritoElemento = document.querySelector('.carrito');
+                if (carritoElemento) carritoElemento.style.display = 'none';
+            }
+        });
+    }
+
+    const btnVaciar = document.getElementById('btn-vaciar');
+    if (btnVaciar && typeof window.vaciarCarrito === 'function') {
+        btnVaciar.addEventListener('click', () => window.vaciarCarrito());
+    }
+
+    const btnFinalizar = document.getElementById('btn-finalizar');
+    if (btnFinalizar) {
+        btnFinalizar.addEventListener('click', () => {
+            alert('Función de finalizar compra - Próximamente');
+        });
     }
 
     // Exponer enlaces seguros sólo si existen las funciones

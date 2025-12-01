@@ -32,9 +32,9 @@
 
 /* Estilos para modales */
 .modal {
-    display: none !important;
+    display: none;
     position: fixed;
-    z-index: 9999 !important;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -44,7 +44,7 @@
 }
 
 .modal.visible {
-    display: block !important;
+    display: block;
 }
 
 .modal-contenido {

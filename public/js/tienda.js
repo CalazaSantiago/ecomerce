@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // intenta recuperar favoritos (si está definido)
-  if (typeof recuperarFavoritos === 'function') recuperarFavoritos();
+  // Recuperar favoritos desde localStorage
+  let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 
   const contenedorProd = document.getElementById('productos-lista') || document.querySelector('section.productos');
 
@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const mostrarProductos = (datos) => {
     if (!contenedorProd) return;
     contenedorProd.innerHTML = '';
+    // Actualizar favoritos desde localStorage antes de renderizar
+    favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
     datos.forEach(item => {
       const src = imgPath(item.imagen);
       const card = document.createElement('div');
@@ -51,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="bottom">
           <div class="precio">
             <span>$${Number(item.precio).toLocaleString('es-AR')}</span>
-            <button class="favorito" data-id="${item.id}">❤</button>
+            <button class="favorito" data-id="${item.id}">🤍</button>
           </div>
           <div class="agregar">
             <div class="amount">
@@ -64,10 +66,17 @@ document.addEventListener("DOMContentLoaded", () => {
       contenedorProd.appendChild(card);
 
       const btnFav = card.querySelector('.favorito');
+      // Verificar si ya está en favoritos
+      const estaEnFavoritos = favoritos.find(f => f.id === item.id);
+      btnFav.textContent = estaEnFavoritos ? '🖤' : '🤍';
+      if (estaEnFavoritos) btnFav.classList.add('en-favoritos');
+      
       btnFav.addEventListener('click', () => {
-        if (typeof toggleFavoritos === 'function') toggleFavoritos(item);
-        else if (typeof agregarAFavoritos === 'function') agregarAFavoritos(item);
-        else console.warn('Función de favoritos no disponible');
+        if (typeof agregarAFavoritos === 'function') {
+          agregarAFavoritos(item, btnFav);
+        } else {
+          console.warn('Función de favoritos no disponible');
+        }
       });
 
       card.querySelector('.addcarrito').addEventListener('click', () => {

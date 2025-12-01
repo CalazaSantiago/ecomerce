@@ -1,9 +1,11 @@
 // Variables globales
 let productoEnEdicion = null;
 const token = localStorage.getItem('token');
+const adminToken = localStorage.getItem('adminToken');
 
 console.log('=== ADMIN.JS LOADED ===');
 console.log('Token disponible:', !!token);
+console.log('Admin Token disponible:', !!adminToken);
 
 // Esperar a que el DOM esté listo
 if (document.readyState === 'loading') {
@@ -18,6 +20,16 @@ async function inicializar() {
     // Verificar autenticación
     if (!token) {
         console.warn('No hay token, redirigiendo a login');
+        window.location.href = '/login.html';
+        return;
+    }
+
+    // Verificar token de admin
+    if (!adminToken) {
+        console.warn('No hay token de admin');
+        alert('Token de administrador no encontrado. Por favor, inicia sesión nuevamente.');
+        localStorage.removeItem('token');
+        localStorage.removeItem('usuario');
         window.location.href = '/login.html';
         return;
     }
@@ -234,13 +246,11 @@ function abrirModalAgregar() {
     productoEnEdicion = null;
 
     if (modal) {
-        modal.style.display = 'block';
-        modal.classList.add('visible');
-        console.log('Modal display set to block y clase visible agregada');
-        console.log('Modal className:', modal.className);
-        console.log('Modal style.display:', modal.style.display);
-        console.log('Modal computed display:', window.getComputedStyle(modal).display);
-        console.log('Modal z-index:', window.getComputedStyle(modal).zIndex);
+        modal.style.display = 'flex';
+        modal.style.opacity = '1';
+        modal.style.pointerEvents = 'auto';
+        modal.classList.add('visible', 'activo');
+        console.log('Modal abierto');
     } else {
         console.error('ERROR: modal-destino NO encontrado');
     }
@@ -252,7 +262,9 @@ function cerrarModalAgregar() {
     const modal = document.getElementById('modal-destino');
     if (modal) {
         modal.style.display = 'none';
-        modal.classList.remove('visible');
+        modal.style.opacity = '0';
+        modal.style.pointerEvents = 'none';
+        modal.classList.remove('visible', 'activo');
     }
 }
 
@@ -292,11 +304,11 @@ async function abrirModalEditar(id) {
         console.log('Modal editar encontrado:', !!modal);
         
         if (modal) {
-            modal.style.display = 'block';
-            modal.classList.add('visible');
-            console.log('Modal editar display set to block y clase visible agregada');
-            console.log('Modal computed display:', window.getComputedStyle(modal).display);
-            console.log('Modal z-index:', window.getComputedStyle(modal).zIndex);
+            modal.style.display = 'flex';
+            modal.style.opacity = '1';
+            modal.style.pointerEvents = 'auto';
+            modal.classList.add('visible', 'activo');
+            console.log('Modal editar abierto');
         } else {
             console.error('ERROR: modal-editar NO encontrado');
         }
@@ -312,7 +324,9 @@ function cerrarModalEditar() {
     const modal = document.getElementById('modal-editar');
     if (modal) {
         modal.style.display = 'none';
-        modal.classList.remove('visible');
+        modal.style.opacity = '0';
+        modal.style.pointerEvents = 'none';
+        modal.classList.remove('visible', 'activo');
     }
 }
 
@@ -336,7 +350,8 @@ async function agregarProducto() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'x-admin-token': adminToken
             },
             body: JSON.stringify({
                 nombre,
@@ -388,7 +403,8 @@ async function editarProducto() {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'x-admin-token': adminToken
             },
             body: JSON.stringify({
                 nombre,
@@ -425,7 +441,8 @@ async function eliminarProducto(id) {
         const response = await fetch(`/api/productos/${id}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'x-admin-token': adminToken
             }
         });
 

@@ -39,6 +39,7 @@ app.use('/api/usuarios', usuarioRoutes);
 // Rutas de productos
 app.use('/api/productos', productoRoutes);
 
+
 app.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`);
 });
